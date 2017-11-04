@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 class ProductCategoryRow extends React.Component {
@@ -37,10 +36,19 @@ class ProductRow extends React.Component {
 
 class ProductTable extends React.Component {
   render() {
+    const filterText = this.props.filterText;
+    const inStockOnly = this.props.inStockOnly;
+
     const rows = [];
     let lastCategory = null;
     
     this.props.products.forEach((product) => {
+      if (product.name.indexOf(filterText) === -1) {
+        return;
+      }
+      if (inStockOnly && !product.stocked) {
+        return;
+      }
       if (product.category !== lastCategory) {
         rows.push(
           <ProductCategoryRow
@@ -74,15 +82,26 @@ class ProductTable extends React.Component {
 
 class SearchBar extends React.Component {
   render() {
+    const filterText = this.props.filterText;
+    const inStockOnly = this.props.inStockOnly;
+
     return (
       <div class="container">
         <form class="form-inline mx-sm-3">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Product name..." />
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Product name..."
+              value={filterText} />
           </div>
           <div class="form-group mx-sm-3">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" />
+              <input 
+                type="checkbox" 
+                class="form-check-input" 
+                checked={inStockOnly} />
+              {' '}
               Only show products in stock
             </label>
           </div>
@@ -94,11 +113,26 @@ class SearchBar extends React.Component {
 }
 
 class FilterableProductTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filterText: '',
+      inStockOnly: false
+    };
+  }
+
   render() {
     return (
       <div class="container">
-        <SearchBar />
-        <ProductTable products={this.props.products} />
+        <SearchBar
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+        />
+        <ProductTable
+          products={this.props.products}
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+        />
       </div>
     );
   }
