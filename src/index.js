@@ -57,15 +57,17 @@ class ProductTable extends React.Component {
     });
 
     return (
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
+      <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </table>
+      </div>
     );
   }
 }
@@ -73,18 +75,20 @@ class ProductTable extends React.Component {
 class SearchBar extends React.Component {
   render() {
     return (
-      <form class="form-inline mx-sm-3">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Product name..." />
-        </div>
-        <div class="form-group mx-sm-3">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" />
-            Only show products in stock
-          </label>
-        </div>
-        <button type="submit" class="btn btn-primary">Search</button>
-      </form>
+      <div class="container">
+        <form class="form-inline mx-sm-3">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Product name..." />
+          </div>
+          <div class="form-group mx-sm-3">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" />
+              Only show products in stock
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+      </div>
     );
   }
 }
