@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 class ProductCategoryRow extends React.Component {
   render() {
@@ -65,8 +65,8 @@ class ProductTable extends React.Component {
     });
 
     return (
-      <div class="container">
-        <table class="table">
+      <div className="container">
+        <table className="table">
           <thead>
             <tr>
               <th>Name</th>
@@ -97,28 +97,28 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div class="container">
-        <form class="form-inline mx-sm-3">
-          <div class="form-group">
+      <div className="container">
+        <form className="form-inline mx-sm-3">
+          <div className="form-group">
             <input 
               type="text" 
-              class="form-control" 
+              className="form-control" 
               placeholder="Product name..."
               value={this.props.filterText}
               onChange={this.handleFilterTextChange} />
           </div>
-          <div class="form-group mx-sm-3">
-            <label class="form-check-label">
+          <div className="form-group mx-sm-3">
+            <label className="form-check-label">
               <input 
                 type="checkbox" 
-                class="form-check-input" 
+                className="form-check-input" 
                 checked={this.props.inStockOnly}
                 onChange={this.handleInStockChange} />
               {' '}
               Only show products in stock
             </label>
           </div>
-          <button type="submit" class="btn btn-primary">Search</button>
+          {/*<button type="submit" className="btn btn-primary">Search</button>*/}
         </form>
       </div>
     );
@@ -151,7 +151,7 @@ class FilterableProductTable extends React.Component {
 
   render() {
     return (
-      <div class="container">
+      <div className="container">
         <SearchBar
           filterText={this.state.filterText}
           inStockOnly={this.state.inStockOnly}
